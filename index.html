@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup Complete - iFollow</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        background: '#0F172A',
+                        surface: '#1E293B',
+                        textMain: '#F8FAFC',
+                        textMuted: '#94A3B8',
+                        brand: '#D86D4A',      // Brand color
+                        brandHover: '#C65F3E', // Slightly darker brand
+                        success: '#10B981',
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+                        'pop-in': 'popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+                        'pulse-glow': 'pulseGlow 2s infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        popIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.5)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 15px rgba(216, 109, 74, 0.4)' },
+                            '50%': { boxShadow: '0 0 30px rgba(216, 109, 74, 0.8)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { background-color: #0F172A; color: #F8FAFC; }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 antialiased selection:bg-brand selection:text-white">
+
+    <div class="glass-card w-full max-w-md p-8 rounded-3xl shadow-2xl text-center transform hover:scale-[1.02] transition-transform duration-500 animate-fade-in-up">
+        
+        <!-- Icon: Outer wrapper for Pop In, inner wrapper for Pulse Glow -->
+        <div class="opacity-0 animate-pop-in" style="animation-delay: 0.2s;">
+            <div class="mx-auto flex items-center justify-center w-20 h-20 bg-brand/10 rounded-full mb-6 animate-pulse-glow">
+                <!-- Inner icon with slight bounce on hover -->
+                <i data-lucide="check-circle" class="w-10 h-10 text-brand transform transition-transform duration-300 hover:scale-110 hover:-rotate-6"></i>
+            </div>
+        </div>
+
+        <!-- Typography -->
+        <h1 class="text-3xl font-bold tracking-tight mb-2 text-white">Setup Complete</h1>
+        <p class="text-textMuted text-base mb-8 leading-relaxed">
+            Your Stripe account is fully configured. You are now ready to request payouts and withdraw your earnings seamlessly.
+        </p>
+
+        <!-- Divider -->
+        <div class="w-full h-px bg-white/10 mb-8"></div>
+
+        <!-- Action / CTA -->
+        <div class="space-y-4">
+            <p class="text-sm font-medium text-textMuted flex items-center justify-center gap-2">
+                <i data-lucide="smartphone" class="w-4 h-4"></i>
+                You can safely close this window
+            </p>
+            <button onclick="window.close()" class="w-full py-3.5 px-6 bg-brand hover:bg-brandHover focus:ring-4 focus:ring-brand/40 text-white font-medium rounded-xl transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 shadow-lg shadow-brand/25 hover:shadow-brand/40 hover:-translate-y-0.5">
+                Return to iFollow
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+        </div>
+        
+        <!-- Security trust badge -->
+        <div class="mt-8 flex items-center justify-center gap-1.5 text-xs text-textMuted/60">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+            <span>Secured by Stripe</span>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
