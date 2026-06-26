@@ -89,8 +89,8 @@
                 <i data-lucide="smartphone" class="w-4 h-4"></i>
                 You can safely close this window
             </p>
-            <button onclick="window.close()" class="w-full py-3.5 px-6 bg-brand hover:bg-brandHover focus:ring-4 focus:ring-brand/40 text-white font-medium rounded-xl transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 shadow-lg shadow-brand/25 hover:shadow-brand/40 hover:-translate-y-0.5">
-                Return to iFollow
+            <button id="close-btn" onclick="tryClose()" class="w-full py-3.5 px-6 bg-brand hover:bg-brandHover focus:ring-4 focus:ring-brand/40 text-white font-medium rounded-xl transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 shadow-lg shadow-brand/25 hover:shadow-brand/40 hover:-translate-y-0.5">
+                <span>Return to iFollow</span>
                 <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </button>
         </div>
@@ -104,6 +104,18 @@
 
     <script>
         lucide.createIcons();
+        function tryClose() {
+            // Hack to bypass some browser restrictions
+            window.open('', '_self', '');
+            window.close();
+            // If it's still open after 300ms, the browser blocked it. Tell them what to do natively.
+            setTimeout(() => {
+                const btn = document.getElementById('close-btn');
+                btn.innerHTML = '<span>Tap "X" or "Done" at the top to return</span>';
+                btn.classList.add('bg-surface', 'border', 'border-white/10');
+                btn.classList.remove('bg-brand', 'shadow-lg');
+            }, 300);
+        }
     </script>
 </body>
 </html>
